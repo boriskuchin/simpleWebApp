@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.bvkuchin.hw4springjs.hw4springjs.models.Product;
 import ru.bvkuchin.hw4springjs.hw4springjs.repositories.ProductDao;
+import ru.bvkuchin.hw4springjs.hw4springjs.repositories.ProductDaoImpl;
+import ru.bvkuchin.hw4springjs.hw4springjs.repositories.ProductDaoListImpl;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class ProductService {
     private ProductDao repository;
 
     @Autowired
-    public void setRepository(ProductDao repository) {
+    public void setRepository(ProductDaoImpl repository) {
         this.repository = repository;
     }
 
@@ -23,9 +25,11 @@ public class ProductService {
 
     public void changeQuantity(Integer id, Integer delta) {
         Product product = repository.getProductByID(id);
-        if (!((product.getQuantity() < 2) && (delta < 0))) {
-            product.setQuantity(product.getQuantity() + delta);
+        if (!((product.getQuantity() < 1) && (delta < 0))) {
+            repository.updateProductById(id, delta);
         }
+
+
     }
 
     public void deleteProduct(Integer id) {

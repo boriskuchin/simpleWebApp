@@ -3,8 +3,7 @@ package ru.bvkuchin.hw4springjs.hw4springjs.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products")
-
+@Table(name = "PRODUCTS")
 public class Product {
 
     @Id
