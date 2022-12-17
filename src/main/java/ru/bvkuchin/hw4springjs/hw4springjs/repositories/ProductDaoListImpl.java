@@ -5,13 +5,19 @@ import org.springframework.stereotype.Component;
 import ru.bvkuchin.hw4springjs.hw4springjs.models.Product;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @Component
-public class ProductRepository {
+public class ProductDaoListImpl implements ProductDao{
     private List<Product> products;
+
+    @Override
+    public void updateProductById(Integer id, Integer delta) {
+        Product product = products.stream().filter(p -> p.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException());
+        product.setQuantity(product.getQuantity() + delta);
+
+    }
 
     @PostConstruct
     public void init() {
