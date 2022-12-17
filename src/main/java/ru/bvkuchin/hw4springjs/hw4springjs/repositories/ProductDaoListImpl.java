@@ -5,12 +5,11 @@ import org.springframework.stereotype.Component;
 import ru.bvkuchin.hw4springjs.hw4springjs.models.Product;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @Component
-public class ProductRepository {
+public class ProductDaoListImpl implements ProductDao{
     private List<Product> products;
 
     @PostConstruct
